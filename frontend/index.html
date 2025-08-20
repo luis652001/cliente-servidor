@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Cliente-Servidor - Arquitecturas 2025</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-server"></i> Sistema Cliente-Servidor</h1>
+            <p class="subtitle">Arquitecturas 2025 - Producto 1</p>
+        </header>
+
+        <!-- Formulario de Autenticación -->
+        <div id="auth-section" class="auth-section">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="showTab('login')">Iniciar Sesión</button>
+                    <button class="tab-btn" onclick="showTab('register')">Registrarse</button>
+                </div>
+
+                <!-- Formulario de Login -->
+                <div id="login-form" class="auth-form active">
+                    <h2>Iniciar Sesión</h2>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="login-email">Email:</label>
+                            <input type="email" id="login-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Contraseña:</label>
+                            <input type="password" id="login-password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Formulario de Registro -->
+                <div id="register-form" class="auth-form">
+                    <h2>Registrarse</h2>
+                    <form onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label for="register-name">Nombre:</label>
+                            <input type="text" id="register-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email:</label>
+                            <input type="email" id="register-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Contraseña:</label>
+                            <input type="password" id="register-password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Registrarse
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Principal (solo visible después del login) -->
+        <div id="main-panel" class="main-panel hidden">
+            <!-- Barra de Navegación -->
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="user-name">Usuario</span>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn btn-secondary" onclick="showCreateItemForm()">
+                        <i class="fas fa-plus"></i> Nuevo Item
+                    </button>
+                    <button class="btn btn-outline" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Contenido Principal -->
+            <main class="main-content">
+                <!-- Formulario para crear/editar items -->
+                <div id="item-form-container" class="item-form-container hidden">
+                    <div class="item-form">
+                        <h3 id="item-form-title">Nuevo Item</h3>
+                        <form id="item-form" onsubmit="handleItemSubmit(event)">
+                            <input type="hidden" id="item-id" name="id">
+                            <div class="form-group">
+                                <label for="item-name">Nombre:</label>
+                                <input type="text" id="item-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="item-description">Descripción:</label>
+                                <textarea id="item-description" name="description" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="item-status">Estado:</label>
+                                <select id="item-status" name="status">
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Guardar
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="hideItemForm()">
+                                    <i class="fas fa-times"></i> Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Lista de Items -->
+                <div class="items-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-list"></i> Mis Items</h2>
+                        <button class="btn btn-primary" onclick="showCreateItemForm()">
+                            <i class="fas fa-plus"></i> Nuevo Item
+                        </button>
+                    </div>
+                    
+                    <div id="items-list" class="items-list">
+                        <!-- Los items se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Notificaciones -->
+        <div id="notifications" class="notifications"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js?v=1.7"></script>
+</body>
+</html>
