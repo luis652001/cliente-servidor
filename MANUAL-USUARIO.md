@@ -294,7 +294,7 @@ Has configurado exitosamente el **Proyecto Cliente-Servidor**.
 
 ---
 
-**🔄 Última actualización**: Enero 2025  
+ 
 **👨‍💻 Desarrollado por**: Sistema de Microservicios - Arquitecturas 2025  
 **📧 Contacto**: Soporte técnico del proyecto
 
